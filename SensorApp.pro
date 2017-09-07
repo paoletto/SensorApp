@@ -5,8 +5,8 @@
 TEMPLATE = app
 TARGET = QtSensors
 INCLUDEPATH += .
-QT += declarative widgets opengl sensors
-QTPLUGIN += qtsensors_ios qtsensors_generic
+QT += qml network quick widgets opengl sensors quickcontrols2
+QTPLUGIN += qtsensors_android qtsensors_generic #qtsensors_ios
 
 # Input
 SOURCES += main.cpp

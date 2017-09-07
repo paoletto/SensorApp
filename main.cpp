@@ -1,4 +1,6 @@
-#include <QtDeclarative>
+#include <QQmlApplicationEngine>
+#include <QQmlExtensionPlugin>
+#include <QQmlContext>
 #include <QtWidgets>
 #include <QtSensors>
 
@@ -409,8 +411,9 @@ private:
 
 int main(int argc, char **argv)
 {
+    QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QApplication app(argc, argv);
-    app.primaryScreen()->setOrientationUpdateMask(Qt::PortraitOrientation);
+    //app.primaryScreen()->setOrientationUpdateMask(Qt::PortraitOrientation);
 
     qmlRegisterType<QMLAccelerometer,1>("Sensors", 1, 0, "Accelerometer");
     qmlRegisterType<QMLGyroscope,1>("Sensors", 1, 0, "Gyroscope");
@@ -419,12 +422,8 @@ int main(int argc, char **argv)
     qmlRegisterType<QMLProximitySensor,1>("Sensors", 1, 0, "ProximitySensor");
     qmlRegisterType<QMLTiltSensor,1>("Sensors", 1, 0, "TiltSensor");
 
-    QDeclarativeView view;
-    view.setResizeMode(QDeclarativeView::SizeRootObjectToView);
-
-    view.setSource(QUrl("qrc:/main.qml"));
-    view.setViewportUpdateMode(QDeclarativeView::FullViewportUpdate);
-    view.show();
+    QQmlApplicationEngine engine;
+    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 
     return app.exec();
 }

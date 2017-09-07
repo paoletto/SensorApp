@@ -1,7 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>Button.qml</file>
         <file>Accelerometer.qml</file>
         <file>Gyroscope.qml</file>
         <file>Magnetometer.qml</file>
